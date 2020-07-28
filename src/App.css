@@ -1,7 +1,7 @@
 .navbar {
     display: flex;
     align-items: center;
-    padding: 10px 20px;
+    padding: 10px 40px;
     justify-content: space-between;
     color: #49698E;
     border-bottom: 1px solid #dbdbdb;
@@ -20,4 +20,29 @@
 
 .navbar nav a:hover {
     color: #49698E;
+}
+
+.sidebar {
+    max-width: 300px;
+    height: 100vh;
+    background-color: #F2F8FD;
+    border-right: 1px solid #dbdbdb;
+    display: flex;
+    flex-direction: column;
+}
+
+.sidebar--feed-list {
+   text-decoration: none;
+    list-style: none;
+}
+
+.sidebar-form {
+    padding-left: 40px;
+    max-width: 200px;
+    display: flex;
+    flex-direction: column;
+}
+
+.sidebar-form input{
+    margin-bottom: 10px;
 }
