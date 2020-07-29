@@ -32,8 +32,18 @@
 }
 
 .sidebar--feed-list {
-   text-decoration: none;
+    text-decoration: none;
     list-style: none;
+}
+
+.sidebar--feed-title {
+    margin: 13px auto;
+    color: #49698E;
+}
+
+.sidebar--feed-title:hover {
+    cursor: pointer;
+    color: #aac;
 }
 
 .sidebar-form {
