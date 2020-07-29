@@ -7,7 +7,7 @@ let parser = new Parser();
 const parseFeed = ((feedUrl) => {
     parser.parseURL(`${CORS_PROXY}${feedUrl}`, (err, feed) => {
         if (err) throw err;
-        console.log(feed)
+        console.log(feed.title);
     })
 });
 

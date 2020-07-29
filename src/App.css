@@ -22,8 +22,13 @@
     color: #49698E;
 }
 
+.main-container {
+    display: flex;
+    flex-direction: row;
+}
+
 .sidebar {
-    max-width: 300px;
+    width: 300px;
     height: 100vh;
     background-color: #F2F8FD;
     border-right: 1px solid #dbdbdb;
