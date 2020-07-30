@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import Parser from "rss-parser";
 import FeedItem from "./FeedItem";
 import FeedContent from "./FeedContent";
+import { v4 } from 'uuid';
 
 /*
             feeds to test out
@@ -49,7 +50,7 @@ export default function Sidebar() {
                         feeds.map((feed, i) => (
                             <FeedItem
                                 title={feed.feedTitle}
-                                key={i}
+                                key={v4()}
                                 onClick={() => handleSelectFeed()}
                             />
                         )) :
