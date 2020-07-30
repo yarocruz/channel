@@ -3,9 +3,20 @@ import Parser from "rss-parser";
 import FeedItem from "./FeedItem";
 import FeedContent from "./FeedContent";
 
+/*
+            feeds to test out
+            `https://feeds.feedblitz.com/sethsblog`,
+            `https://news.ycombinator.com/rss`,
+            `https://whatthefuck.is/feed.xml`,
+            http://feeds.feedburner.com/codinghorror?format=xml
+            https://www.taniarascia.com/rss.xml
+            https://cprss.s3.amazonaws.com/javascriptweekly.com.xml
+*/
+
 export default function Sidebar() {
     const [feeds, setFeeds] = useState([]);
     const [feedName, setFeedName ] = useState('');
+    const [selectedFeed, setSelectedFeed] = useState(false);
 
     const addFeed = (e) => {
         e.preventDefault();
@@ -26,6 +37,10 @@ export default function Sidebar() {
         setFeedName('');
     }
 
+    const handleSelectFeed = () => {
+        setSelectedFeed(!selectedFeed);
+    }
+
     return (
         <div className='main-container'>
             <div className="sidebar">
@@ -35,7 +50,7 @@ export default function Sidebar() {
                             <FeedItem
                                 title={feed.feedTitle}
                                 key={i}
-                                getItems={() => console.log(feed.feedUrl)}
+                                onClick={() => handleSelectFeed()}
                             />
                         )) :
                         <li>No feeds yet.</li>
@@ -47,7 +62,7 @@ export default function Sidebar() {
                     <button>Add a Feed</button>
                 </form>
             </div>
-            <FeedContent feeds={feeds}/>
+            <FeedContent feeds={feeds} display={selectedFeed}/>
         </div>
     )
 }

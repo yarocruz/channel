@@ -1,9 +1,9 @@
 import React from "react";
 
-export default function FeedContent({ feeds }) {
+export default function FeedContent({ feeds, display }) {
     return (
         <div>
-            {feeds.length ?
+            {feeds.length && display ?
                 feeds.map((feed, i) => {
                     return feed.feedItems.map(item => (
                         <ul>
