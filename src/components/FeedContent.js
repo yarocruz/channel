@@ -1,15 +1,15 @@
 import React from "react";
 import { v4 } from 'uuid';
 
-export default function FeedContent({ feeds, display }) {
+export default function FeedContent({ feeds }) {
     return (
         <div>
-            {feeds.length && display ?
+            {feeds.length ?
                 feeds.map(feed => {
-                    return feed.feedItems.map(item => (
+                    return feed.map(item => (
                         <ul>
                             <li key={v4()}>
-                                <a  href={item.link}>{item.title}</a>
+                                <a  key={v4()} href={item.link}>{item.title}</a>
                             </li>
                         </ul>
                     ))

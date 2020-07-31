@@ -15,21 +15,25 @@ import { v4 } from 'uuid';
 */
 
 export default function Sidebar() {
+
+    const CORS_PROXY = `https://cors-anywhere.herokuapp.com/`;
+
     const [feeds, setFeeds] = useState([]);
     const [feedName, setFeedName ] = useState('');
-    const [selectedFeed, setSelectedFeed] = useState(false);
+    const [feedItems, setFeedItems] = useState([]);
 
     const addFeed = (e) => {
         e.preventDefault();
-        const CORS_PROXY = `https://cors-anywhere.herokuapp.com/`;
+
         let parser = new Parser();
         parser.parseURL(`${CORS_PROXY}${feedName}`, (err, feed) => {
             if (err) throw err;
             console.log(feed);
             let feedData = {
+                id: v4(),
+                feedRSS: feedName,
                 feedTitle: feed.title,
                 feedUrl: feed.link,
-                feedItems: feed.items
             }
             setFeeds([...feeds, feedData ]);
         })
@@ -38,8 +42,15 @@ export default function Sidebar() {
         setFeedName('');
     }
 
-    const handleSelectFeed = () => {
-        setSelectedFeed(!selectedFeed);
+    const renderSelectFeed = (id) => {
+        let selected = feeds.filter(feed => feed.id === id);
+        let parser = new Parser();
+        parser.parseURL(`${CORS_PROXY}${selected[0].feedRSS}`, (err, feed) => {
+            if (err) throw err;
+            setFeedItems([feed.items]);
+            console.log(feedItems)
+        })
+
     }
 
     return (
@@ -50,8 +61,8 @@ export default function Sidebar() {
                         feeds.map((feed, i) => (
                             <FeedItem
                                 title={feed.feedTitle}
-                                key={v4()}
-                                onClick={() => handleSelectFeed()}
+                                key={feed.id}
+                                onClick={() => renderSelectFeed(feed.id)}
                             />
                         )) :
                         <li>No feeds yet.</li>
@@ -63,7 +74,7 @@ export default function Sidebar() {
                     <button>Add a Feed</button>
                 </form>
             </div>
-            <FeedContent feeds={feeds} display={selectedFeed}/>
+            <FeedContent feeds={feedItems} />
         </div>
     )
 }
