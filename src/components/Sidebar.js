@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Parser from "rss-parser";
 import FeedItem from "./FeedItem";
 import FeedContent from "./FeedContent";
@@ -22,6 +22,13 @@ export default function Sidebar() {
     const [feedName, setFeedName ] = useState('');
     const [feedItems, setFeedItems] = useState([]);
 
+    useEffect(() => {
+        const savedFeeds = JSON.parse(localStorage.getItem('feeds'));
+        console.log(savedFeeds);
+        if (savedFeeds === null) return;
+        setFeeds(savedFeeds)
+    }, []);
+
     const addFeed = (e) => {
         e.preventDefault();
 
@@ -35,6 +42,7 @@ export default function Sidebar() {
                 feedTitle: feed.title,
                 feedUrl: feed.link,
             }
+            localStorage.setItem('feeds', JSON.stringify([...feeds, feedData]));
             setFeeds([...feeds, feedData ]);
         })
 
