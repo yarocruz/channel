@@ -7,9 +7,9 @@ export default function FeedContent({ feeds }) {
             {feeds.length ?
                 feeds.map(feed => {
                     return feed.map(item => (
-                        <ul>
+                        <ul className='content-links'>
                             <li key={v4()}>
-                                <a  key={v4()} href={item.link}>{item.title}</a>
+                                <a  href={item.link}>{item.title}</a>
                             </li>
                         </ul>
                     ))

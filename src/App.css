@@ -36,9 +36,15 @@
     flex-direction: column;
 }
 
-.sidebar--feed-list {
+.sidebar--feed-list,
+.content-links  {
     text-decoration: none;
     list-style: none;
+}
+
+a {
+    text-decoration: none;
+    color: #49698E;
 }
 
 .sidebar--feed-title {
