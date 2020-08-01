@@ -58,10 +58,10 @@ export default function Sidebar() {
             <div className="sidebar">
                 <ul className="sidebar--feed-list">
                     {feeds.length ?
-                        feeds.map((feed, i) => (
+                        feeds.map(feed => (
                             <FeedItem
                                 title={feed.feedTitle}
-                                key={feed.id}
+                                key={v4()}
                                 onClick={() => renderSelectFeed(feed.id)}
                             />
                         )) :
