@@ -4,7 +4,7 @@ Channel is an RSS Reader Web App built with React. The project is currently in s
 
 ## What is RSS Even?
 
-[RSS](https://en.wikipedia.org/wiki/RSS) stands for Really Simple Syndication. It's a way for websites to put share their content online so RSS subscribers can get that content, specially new content, without the user having to visit the site directly. RSS was particularly popular during the "golden years" of blogging. 
+[RSS](https://en.wikipedia.org/wiki/RSS) stands for Really Simple Syndication. It's a way for websites to share their content online so subscribers can get that content. Subscribers can get this content by way of RSS. This is particularly useful when websites publish new content on a regular basis. RSS was particularly popular during the "golden years" of blogging. 
 
 ## Why this project?
 
