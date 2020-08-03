@@ -42,6 +42,11 @@
     list-style: none;
 }
 
+.content-links--item {
+    padding: 5px 0;
+    margin: 10px auto;
+}
+
 a {
     text-decoration: none;
     color: #49698E;

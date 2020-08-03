@@ -4,18 +4,18 @@ import { v4 } from 'uuid';
 export default function FeedContent({ feeds }) {
     return (
         <div>
-            {feeds.length ?
-                feeds.map(feed => {
-                    return feed.map(item => (
-                        <ul className='content-links'>
-                            <li key={v4()}>
+            <ul className='content-links'>
+                {feeds.length ?
+                    feeds.map(feed => {
+                        return feed.map(item => (
+                            <li key={v4()} className='content-links--item'>
                                 <a  href={item.link}>{item.title}</a>
                             </li>
-                        </ul>
-                    ))
-                }) :
-                <li>No feeds yet.</li>
-            }
+                        ))
+                    }) :
+                    <li>No feeds yet.</li>
+                }
+            </ul>
         </div>
     )
 }
