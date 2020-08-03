@@ -47,7 +47,7 @@ export default function Sidebar() {
             }
             localStorage.setItem('feeds', JSON.stringify([...feeds, feedData]));
             setFeeds([...feeds, feedData ]);
-        })
+        }).catch(err => console.log(err));
         console.log(feeds);
         setFeedName('');
     }
@@ -66,7 +66,7 @@ export default function Sidebar() {
             if (err) throw err;
             setFeedItems([feed.items]);
             console.log(feedItems)
-        })
+        }).catch(err => console.log(err));
     }
 
     return (
