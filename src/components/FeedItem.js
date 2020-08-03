@@ -1,7 +1,10 @@
 import React from "react";
 
-export default function FeedItem({ title, onClick }) {
+export default function FeedItem({ title, onClick, onDelete }) {
     return (
-        <li onClick={onClick} className='sidebar--feed-title'>{title}</li>
+        <div>
+            <li onClick={onClick} className='sidebar--feed-title'>{title}</li>
+            <button onClick={onDelete}>Delete</button>
+        </div>
     )
 }
