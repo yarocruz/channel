@@ -42,6 +42,20 @@
     list-style: none;
 }
 
+.sidebar--feed-item {
+    display: flex;
+    align-items: center;
+}
+
+.sidebar--feed-delete {
+    color: #49698E;
+}
+
+.sidebar--feed-delete:hover {
+    cursor: pointer;
+    color: slateblue;
+}
+
 .content-links--item {
     padding: 5px 0;
     margin: 10px auto;
@@ -53,13 +67,13 @@ a {
 }
 
 .sidebar--feed-title {
-    margin: 13px auto;
+    padding: 13px 0;
     color: #49698E;
 }
 
 .sidebar--feed-title:hover {
     cursor: pointer;
-    color: #aac;
+    color: slateblue;
 }
 
 .sidebar-form {
