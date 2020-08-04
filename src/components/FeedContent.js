@@ -13,7 +13,7 @@ export default function FeedContent({ feeds }) {
                             </li>
                         ))
                     }) :
-                    <li>No feeds yet.</li>
+                    <li>Select a Feed</li>
                 }
             </ul>
         </div>
