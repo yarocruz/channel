@@ -37,7 +37,10 @@ export default function Sidebar() {
 
         let parser = new Parser();
         parser.parseURL(`${CORS_PROXY}${feedName}`, (err, feed) => {
-            if (err) throw err;
+            if (err) {
+                alert('Must enter a valid RSS feed');
+                throw err;
+            }
             console.log(feed);
             let feedData = {
                 id: v4(),
@@ -47,7 +50,9 @@ export default function Sidebar() {
             }
             localStorage.setItem('feeds', JSON.stringify([...feeds, feedData]));
             setFeeds([...feeds, feedData ]);
-        }).catch(err => console.log(err));
+        }).catch(err => {
+            console.log(err);
+        });
         console.log(feeds);
         setFeedName('');
     }
