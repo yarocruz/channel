@@ -23,7 +23,13 @@ export default function Sidebar() {
 
     const [feeds, setFeeds] = useState([]);
     const [feedName, setFeedName ] = useState('');
-    const [feedItems, setFeedItems] = useState([]);
+    const [feedItems, setFeedItems] = useState(
+        {
+            title: '',
+            description: '',
+            items: []
+        }
+    );
 
     useEffect(() => {
         const savedFeeds = JSON.parse(localStorage.getItem('feeds'));
@@ -37,6 +43,7 @@ export default function Sidebar() {
 
         let parser = new Parser();
         parser.parseURL(`${CORS_PROXY}${feedName}`, (err, feed) => {
+            console.log(feed);
             if (err) {
                 alert('Must enter a valid RSS feed');
                 throw err;
@@ -46,7 +53,9 @@ export default function Sidebar() {
                 id: v4(),
                 feedRSS: feedName,
                 feedTitle: feed.title,
+                feedDesc: feed.description,
                 feedUrl: feed.link,
+                feedItems: feed.items.length
             }
             localStorage.setItem('feeds', JSON.stringify([...feeds, feedData]));
             setFeeds([...feeds, feedData ]);
@@ -66,10 +75,15 @@ export default function Sidebar() {
 
     const renderSelectFeed = (id) => {
         let selected = feeds.filter(feed => feed.id === id);
+        console.log(selected);
         let parser = new Parser();
         parser.parseURL(`${CORS_PROXY}${selected[0].feedRSS}`, (err, feed) => {
             if (err) throw err;
-            setFeedItems([feed.items]);
+            setFeedItems({
+                title: feed.title,
+                description: feed.description,
+                items: [ feed.items]
+            });
             console.log(feedItems)
         }).catch(err => console.log(err));
     }
@@ -82,6 +96,7 @@ export default function Sidebar() {
                         feeds.map(feed => (
                             <FeedItem
                                 title={feed.feedTitle}
+                                feedCount={feed.feedItems}
                                 key={v4()}
                                 onClick={() => renderSelectFeed(feed.id)}
                                 onDelete={() => deleteFeed(feed.id)}
