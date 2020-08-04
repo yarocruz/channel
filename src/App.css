@@ -47,8 +47,17 @@
     align-items: center;
 }
 
+.sidebar--feed-count {
+    background-color: #49698E;
+    color: white;
+    font-size: 10px;
+    font-weight: bold;
+    padding: 5px;
+    border-radius: 7px;
+}
+
 .sidebar--feed-delete {
-    color: #49698E;
+    color: darkred;
 }
 
 .sidebar--feed-delete:hover {
@@ -59,6 +68,10 @@
 .content-links--item {
     padding: 5px 0;
     margin: 10px auto;
+}
+
+.content-links--info {
+    padding-bottom: 20px;
 }
 
 a {
