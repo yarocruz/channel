@@ -57,7 +57,8 @@
 }
 
 .sidebar--feed-delete {
-    color: darkred;
+    color: #49698E;
+    font-size:12px;
 }
 
 .sidebar--feed-delete:hover {
@@ -68,6 +69,10 @@
 .content-links--item {
     padding: 5px 0;
     margin: 10px auto;
+}
+
+.content-links--item a:hover {
+    color: slateblue;
 }
 
 .content-links--info {
