@@ -111,6 +111,7 @@ export default function Sidebar() {
                     <button>Add a Feed</button>
                 </form>
             </div>
+
             <FeedContent feeds={feedItems} />
         </div>
     )

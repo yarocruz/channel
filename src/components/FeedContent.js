@@ -13,7 +13,7 @@ export default function FeedContent({ feeds }) {
                     feeds.items.map(feed => {
                         return feed.map(item => (
                             <li key={v4()} className='content-links--item'>
-                                <a  href={item.link}>{item.title}</a>
+                                <a  href={item.link}>{item.title} </a>
                             </li>
                         ))
                     }) :
