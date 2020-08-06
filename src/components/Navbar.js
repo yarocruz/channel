@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 export default function Navbar() {
     return (
@@ -6,7 +7,7 @@ export default function Navbar() {
             <h1 className="logo">Channel</h1>
             <nav>
                 <a href="https://en.wikipedia.org/wiki/RSS">What is RSS?</a>
-                <a href="#">Guide</a>
+                <Link to='/guide'>Guide</Link>
             </nav>
         </div>
     )
