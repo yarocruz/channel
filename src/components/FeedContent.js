@@ -1,7 +1,7 @@
 import React from "react";
 import { v4 } from 'uuid';
 
-export default function FeedContent({ feeds }) {
+export default function FeedContent({ feeds, markAsRead }) {
     return (
         <div>
             <ul className='content-links'>
@@ -12,7 +12,7 @@ export default function FeedContent({ feeds }) {
                 {feeds.items.length ?
                     feeds.items.map(feed => {
                         return feed.map(item => (
-                            <li key={v4()} className='content-links--item'>
+                            <li onClick={markAsRead} key={v4()} className='content-links--item'>
                                 <a  href={item.link}>{item.title} </a>
                             </li>
                         ))

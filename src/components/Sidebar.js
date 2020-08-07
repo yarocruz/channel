@@ -5,16 +5,16 @@ import FeedContent from "./FeedContent";
 import { v4 } from 'uuid';
 
 /*
-            feeds to test out
-            http://www.aaronsw.com/2002/feeds/pgessays.rss
-            https://us1.campaign-archive.com/feed?u=faa8eb4ef3a111cef92c4f3d4&id=e505c88a2e
-            https://us1.campaign-archive.com/feed?u=25a34f10515c4e9393e3da856&id=280158dda1
-            `https://feeds.feedblitz.com/sethsblog`,
-            `https://news.ycombinator.com/rss`,
-            `https://whatthefuck.is/feed.xml`,
-            http://feeds.feedburner.com/codinghorror?format=xml
-            https://www.taniarascia.com/rss.xml
-            https://cprss.s3.amazonaws.com/javascriptweekly.com.xml
+    feeds to test out
+    http://www.aaronsw.com/2002/feeds/pgessays.rss
+    https://us1.campaign-archive.com/feed?u=faa8eb4ef3a111cef92c4f3d4&id=e505c88a2e
+    https://us1.campaign-archive.com/feed?u=25a34f10515c4e9393e3da856&id=280158dda1
+    `https://feeds.feedblitz.com/sethsblog`,
+    `https://news.ycombinator.com/rss`,
+    `https://whatthefuck.is/feed.xml`,
+    http://feeds.feedburner.com/codinghorror?format=xml
+    https://www.taniarascia.com/rss.xml
+    https://cprss.s3.amazonaws.com/javascriptweekly.com.xml
 */
 
 export default function Sidebar() {
@@ -25,6 +25,7 @@ export default function Sidebar() {
     const [feedName, setFeedName ] = useState('');
     const [feedItems, setFeedItems] = useState(
         {
+            id: '',
             title: '',
             description: '',
             items: []
@@ -33,7 +34,7 @@ export default function Sidebar() {
 
     useEffect(() => {
         const savedFeeds = JSON.parse(localStorage.getItem('feeds'));
-        console.log(savedFeeds);
+        //console.log(savedFeeds);
         if (savedFeeds === null) return;
         setFeeds(savedFeeds)
     }, []);
@@ -63,7 +64,14 @@ export default function Sidebar() {
             console.log(err);
         });
         console.log(feeds);
+
         setFeedName('');
+    }
+
+    const markAsRead = (id) => {
+        let selected = feeds.filter(item => item.id === id);
+        let read = selected[feedItems];
+        console.log(read);
     }
 
     const deleteFeed = (id) => {
@@ -75,16 +83,18 @@ export default function Sidebar() {
 
     const renderSelectFeed = (id) => {
         let selected = feeds.filter(feed => feed.id === id);
-        console.log(selected);
+        //console.log(selected);
         let parser = new Parser();
         parser.parseURL(`${CORS_PROXY}${selected[0].feedRSS}`, (err, feed) => {
             if (err) throw err;
             setFeedItems({
+                id: selected[0].id,
                 title: feed.title,
                 description: feed.description,
                 items: [ feed.items]
             });
             console.log(feedItems)
+
         }).catch(err => console.log(err));
     }
 
@@ -112,7 +122,7 @@ export default function Sidebar() {
                 </form>
             </div>
 
-            <FeedContent feeds={feedItems} />
+            <FeedContent feeds={feedItems} markAsRead={() => markAsRead(feedItems.id)}/>
         </div>
     )
 }
