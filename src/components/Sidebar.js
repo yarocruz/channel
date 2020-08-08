@@ -9,9 +9,9 @@ import { v4 } from 'uuid';
     http://www.aaronsw.com/2002/feeds/pgessays.rss
     https://us1.campaign-archive.com/feed?u=faa8eb4ef3a111cef92c4f3d4&id=e505c88a2e
     https://us1.campaign-archive.com/feed?u=25a34f10515c4e9393e3da856&id=280158dda1
-    `https://feeds.feedblitz.com/sethsblog`,
-    `https://news.ycombinator.com/rss`,
-    `https://whatthefuck.is/feed.xml`,
+    https://feeds.feedblitz.com/sethsblog,
+    https://news.ycombinator.com/rss,
+    https://whatthefuck.is/feed.xml,
     http://feeds.feedburner.com/codinghorror?format=xml
     https://www.taniarascia.com/rss.xml
     https://cprss.s3.amazonaws.com/javascriptweekly.com.xml
@@ -34,7 +34,6 @@ export default function Sidebar() {
 
     useEffect(() => {
         const savedFeeds = JSON.parse(localStorage.getItem('feeds'));
-        //console.log(savedFeeds);
         if (savedFeeds === null) return;
         setFeeds(savedFeeds)
     }, []);
@@ -44,9 +43,8 @@ export default function Sidebar() {
 
         let parser = new Parser();
         parser.parseURL(`${CORS_PROXY}${feedName}`, (err, feed) => {
-            console.log(feed);
             if (err) {
-                alert('Must enter a valid RSS feed');
+                alert('Must enter a valid RSS feed'); // this solution is ratchet and I need to check if feed is already there.
                 throw err;
             }
             console.log(feed);
@@ -69,9 +67,13 @@ export default function Sidebar() {
     }
 
     const markAsRead = (id) => {
-        let selected = feeds.filter(item => item.id === id);
-        let read = selected[feedItems];
-        console.log(read);
+        setFeeds(feeds.filter(item => {
+            if (item.id === id) {
+                return [...feeds, item['feedItems'] -= 1] // No sure if this is the best, but it's doing the count
+            }
+            console.log(item)
+            return feedItems;
+        }))
     }
 
     const deleteFeed = (id) => {
@@ -83,7 +85,6 @@ export default function Sidebar() {
 
     const renderSelectFeed = (id) => {
         let selected = feeds.filter(feed => feed.id === id);
-        //console.log(selected);
         let parser = new Parser();
         parser.parseURL(`${CORS_PROXY}${selected[0].feedRSS}`, (err, feed) => {
             if (err) throw err;

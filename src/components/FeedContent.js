@@ -12,8 +12,8 @@ export default function FeedContent({ feeds, markAsRead }) {
                 {feeds.items.length ?
                     feeds.items.map(feed => {
                         return feed.map(item => (
-                            <li onClick={markAsRead} key={v4()} className='content-links--item'>
-                                <a  href={item.link}>{item.title} </a>
+                            <li onClick={() => markAsRead()} key={v4()} className='content-links--item'>
+                                <a  href={item.link} target='_blank' rel='noopener noreferrer'>{item.title} </a>
                             </li>
                         ))
                     }) :
