@@ -42,28 +42,35 @@
     list-style: none;
 }
 
+.sidebar--feed-list {
+    padding: 15px;
+}
+
 .sidebar--feed-item {
     display: flex;
     align-items: center;
+    justify-content: space-between;
 }
 
-.sidebar--feed-count {
+.sidebar--feed-item-count {
     background-color: #49698E;
+    margin-left: 4px;
     color: white;
+    padding: 3px 8px;
     font-size: 10px;
     font-weight: bold;
-    padding: 5px;
-    border-radius: 7px;
+    border-radius: 15px;
 }
 
 .sidebar--feed-delete {
-    color: #49698E;
+    color: #ccc;
+    font-weight: bold;
     font-size:12px;
 }
 
 .sidebar--feed-delete:hover {
     cursor: pointer;
-    color: slateblue;
+    color: red;
 }
 
 .content-links--item {
@@ -95,8 +102,8 @@ a {
 }
 
 .sidebar-form {
-    padding-left: 40px;
     max-width: 200px;
+    padding-left: 15px;
     display: flex;
     flex-direction: column;
 }

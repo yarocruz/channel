@@ -9,9 +9,9 @@ import { v4 } from 'uuid';
     http://www.aaronsw.com/2002/feeds/pgessays.rss
     https://us1.campaign-archive.com/feed?u=faa8eb4ef3a111cef92c4f3d4&id=e505c88a2e
     https://us1.campaign-archive.com/feed?u=25a34f10515c4e9393e3da856&id=280158dda1
-    https://feeds.feedblitz.com/sethsblog,
-    https://news.ycombinator.com/rss,
-    https://whatthefuck.is/feed.xml,
+    https://feeds.feedblitz.com/sethsblog
+    https://news.ycombinator.com/rss
+    https://whatthefuck.is/feed.xml
     http://feeds.feedburner.com/codinghorror?format=xml
     https://www.taniarascia.com/rss.xml
     https://cprss.s3.amazonaws.com/javascriptweekly.com.xml
