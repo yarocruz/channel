@@ -29,7 +29,7 @@ export default function Sidebar() {
             id: '',
             title: '',
             description: '',
-            items: []
+            items: [],
         }
     );
 
@@ -124,7 +124,7 @@ export default function Sidebar() {
                 </form>
             </div>
 
-            <FeedContent feeds={feedItems} markAsRead={() => markAsRead(feedItems.id)} clicked={false}/>
+            <FeedContent feeds={feedItems} markAsRead={() => markAsRead(feedItems.id)} />
         </div>
     )
 }
