@@ -82,6 +82,10 @@
     color: slateblue;
 }
 
+.content-links--item a:visited {
+    color: #ccc;
+}
+
 .content-links--info {
     padding-bottom: 20px;
 }

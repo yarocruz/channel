@@ -1,7 +1,8 @@
-import React from "react";
+import React, { useState } from "react";
 import { v4 } from 'uuid';
 
 export default function FeedContent({ feeds, markAsRead }) {
+const [read, setRead] = useState(false)
     return (
         <div>
             <ul className='content-links'>
@@ -12,7 +13,8 @@ export default function FeedContent({ feeds, markAsRead }) {
                 {feeds.items.length ?
                     feeds.items.map(feed => {
                         return feed.map(item => (
-                            <li onClick={() => markAsRead()} key={v4()} className='content-links--item'>
+
+                            <li onClick={!read ? markAsRead : setRead(true)} key={v4()} className='content-links--item'>
                                 <a  href={item.link} target='_blank' rel='noopener noreferrer'>{item.title} </a>
                             </li>
                         ))

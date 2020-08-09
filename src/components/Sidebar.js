@@ -15,6 +15,7 @@ import { v4 } from 'uuid';
     http://feeds.feedburner.com/codinghorror?format=xml
     https://www.taniarascia.com/rss.xml
     https://cprss.s3.amazonaws.com/javascriptweekly.com.xml
+    http://feeds.feedburner.com/scotthyoung/HAHx?format=xml
 */
 
 export default function Sidebar() {
@@ -123,7 +124,7 @@ export default function Sidebar() {
                 </form>
             </div>
 
-            <FeedContent feeds={feedItems} markAsRead={() => markAsRead(feedItems.id)}/>
+            <FeedContent feeds={feedItems} markAsRead={() => markAsRead(feedItems.id)} clicked={false}/>
         </div>
     )
 }
