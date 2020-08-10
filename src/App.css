@@ -82,8 +82,10 @@
     color: slateblue;
 }
 
-.content-links--item a:visited {
-    color: #ccc;
+.content-links--item-date {
+    font-size: small;
+    font-weight: bold;
+    color: #bbb;
 }
 
 .content-links--info {
