@@ -3,8 +3,13 @@ import FeedContentList from "./FeedContentList";
 import { v4 } from 'uuid';
 
 export default function FeedContent({ feeds, markAsRead }) {
-    const [read, setRead] = useState(false)
+    const [clicked, setClicked] = useState([])
 
+    const handleSelected = (i) => {
+        setClicked([...clicked, clicked[i] = true])
+        markAsRead()
+        console.log(clicked)
+    }
 
     return (
         <div>
@@ -14,9 +19,15 @@ export default function FeedContent({ feeds, markAsRead }) {
                     <p>{feeds.description}</p>
                 </div>
                 {feeds.items.length ?
-                    feeds.items.map(feed => {
-                        return feed.map(item => (
-                            <FeedContentList markAsRead={read ? markAsRead : setRead(true)} key={v4()} item={item} read={read} />
+                    feeds.items.map((feed) => {
+                        return feed.map((item, i) => (
+                            <FeedContentList
+                                key={v4()}
+                                item={item}
+                                onClick={(i) => handleSelected(i)}
+                                isClicked={clicked[i]}
+                            />
+
                         ))
                     }) :
                     <li>Select a Feed</li>
