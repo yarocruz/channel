@@ -36,6 +36,18 @@
     flex-direction: column;
 }
 
+.guide-container {
+    margin: 10px 40px;
+}
+
+.guide-container--content {
+    max-width: 700px;
+}
+
+.guide-container p {
+    line-height: 1.7em;
+}
+
 .sidebar--feed-list,
 .content-links  {
     text-decoration: none;
