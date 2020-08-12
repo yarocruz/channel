@@ -6,7 +6,7 @@ export default function Navbar() {
         <div className='navbar'>
             <h1 className="logo"><Link to='/'>Channel</Link></h1>
             <nav>
-                <a href="https://en.wikipedia.org/wiki/RSS">What is RSS?</a>
+                <a href="https://en.wikipedia.org/wiki/RSS" target='_blank' rel='noopener noreferrer'>What is RSS?</a>
                 <Link to='/guide'>Guide</Link>
             </nav>
         </div>
