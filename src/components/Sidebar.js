@@ -70,11 +70,14 @@ export default function Sidebar() {
     const markAsRead = (id) => {
         setFeeds(feeds.filter(item => {
             if (item.id === id) {
+
                 return [...feeds, item['feedItems'] -= 1] // No sure if this is the best, but it's doing the count
             }
+
             console.log(item)
             return feedItems;
         }))
+        localStorage.setItem('feeds', JSON.stringify([...feeds]));
     }
 
     const deleteFeed = (id) => {
