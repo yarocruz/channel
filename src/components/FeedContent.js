@@ -6,6 +6,7 @@ export default function FeedContent({ feeds, markAsRead }) {
     const [clicked, setClicked] = useState([])
 
     const handleSelected = (i) => {
+        // maybe in here setup localstorage to keep track of clicked items?
         setClicked([...clicked, clicked[i] = true])
         markAsRead()
         console.log(clicked)
