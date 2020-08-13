@@ -1,0 +1,24 @@
+{
+  "files": {
+    "main.css": "/channel/static/css/main.57652d0f.chunk.css",
+    "main.js": "/channel/static/js/main.0813c76b.chunk.js",
+    "main.js.map": "/channel/static/js/main.0813c76b.chunk.js.map",
+    "runtime-main.js": "/channel/static/js/runtime-main.a7c8c659.js",
+    "runtime-main.js.map": "/channel/static/js/runtime-main.a7c8c659.js.map",
+    "static/js/2.23418e27.chunk.js": "/channel/static/js/2.23418e27.chunk.js",
+    "static/js/2.23418e27.chunk.js.map": "/channel/static/js/2.23418e27.chunk.js.map",
+    "index.html": "/channel/index.html",
+    "precache-manifest.5f90a5c61451d6f3215d1c7b63c6a9ed.js": "/channel/precache-manifest.5f90a5c61451d6f3215d1c7b63c6a9ed.js",
+    "service-worker.js": "/channel/service-worker.js",
+    "static/css/main.57652d0f.chunk.css.map": "/channel/static/css/main.57652d0f.chunk.css.map",
+    "static/js/2.23418e27.chunk.js.LICENSE.txt": "/channel/static/js/2.23418e27.chunk.js.LICENSE.txt",
+    "static/media/add-feed.png": "/channel/static/media/add-feed.9189382b.png",
+    "static/media/delete-feed.png": "/channel/static/media/delete-feed.eb2c40ee.png"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.a7c8c659.js",
+    "static/js/2.23418e27.chunk.js",
+    "static/css/main.57652d0f.chunk.css",
+    "static/js/main.0813c76b.chunk.js"
+  ]
+}
