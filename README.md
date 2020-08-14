@@ -9,3 +9,5 @@ Channel is an RSS Reader Web App built with React. The project is currently in s
 ## Why this project?
 
 I miss the Web 2.0 days. I remember the first time I saw [Last.fm](https://www.last.fm/) in the early 2000s, and I miss Google Reader, Delicious, Digg before Reddit won that game... etc. My goal is to make an app that captures the spirit and aesthetics of those times. 🙂 
+
+Checkout [Demo](https://yarocruz.github.io/channel/)
