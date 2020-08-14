@@ -49,13 +49,15 @@ export default function Sidebar() {
                 throw err;
             }
             console.log(feed);
+
             let feedData = {
                 id: v4(),
                 feedRSS: feedName,
                 feedTitle: feed.title,
                 feedDesc: feed.description,
                 feedUrl: feed.link,
-                feedItems: feed.items.length
+                feedItems: feed.items.length,
+                items: feed.items.map(obj => ({...obj, read: false})) // adding property to keep track of read items
             }
             localStorage.setItem('feeds', JSON.stringify([...feeds, feedData]));
             setFeeds([...feeds, feedData ]);
@@ -89,18 +91,26 @@ export default function Sidebar() {
 
     const renderSelectFeed = (id) => {
         let selected = feeds.filter(feed => feed.id === id);
-        let parser = new Parser();
-        parser.parseURL(`${CORS_PROXY}${selected[0].feedRSS}`, (err, feed) => {
-            if (err) throw err;
-            setFeedItems({
-                id: selected[0].id,
-                title: feed.title,
-                description: feed.description,
-                items: [ feed.items]
-            });
-            console.log(feedItems)
+        console.log(selected)
+        setFeedItems({
+             id: selected[0].id,
+             title: selected[0].feedTitle,
+             description: selected[0].feedDesc,
+             items: selected[0].items
+        });
 
-        }).catch(err => console.log(err));
+        // let parser = new Parser();
+        // parser.parseURL(`${CORS_PROXY}${selected[0].feedRSS}`, (err, feed) => {
+        //     if (err) throw err;
+        //     setFeedItems({
+        //         id: selected[0].id,
+        //         title: feed.title,
+        //         description: feed.description,
+        //         items: [ feed.items]
+        //     });
+        //     console.log(feedItems)
+        //
+        // }).catch(err => console.log(err));
     }
 
     return (

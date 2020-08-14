@@ -20,18 +20,15 @@ export default function FeedContent({ feeds, markAsRead }) {
                     <p>{feeds.description}</p>
                 </div>
                 {feeds.items.length ?
-                    feeds.items.map((feed) => {
-                        return feed.map((item, i) => (
+                    feeds.items.map((feed, i) => (
                             <FeedContentList
                                 key={v4()}
-                                item={item}
+                                item={feed}
                                 onClick={(i) => handleSelected(i)}
                                 isClicked={clicked[i]}
                             />
 
-                        ))
-                    }) :
-                    <li>Select a Feed</li>
+                        )) : <li>Select a Feed</li>
                 }
             </ul>
         </div>
