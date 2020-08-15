@@ -1,6 +1,6 @@
 import React from "react";
 
-export default function FeedContentList ({ item, onClick, isClicked }) {
+export default function FeedContentList ({ item, onClick }) {
     let pubDates = new Date(item.pubDate);
     let options = { weekday: 'short', year: 'numeric', month: 'short', day: 'numeric' };
     return (

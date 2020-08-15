@@ -1,27 +1,19 @@
-import React, { useState } from "react";
+import React from "react";
 import FeedContentList from "./FeedContentList";
 import { v4 } from 'uuid';
 
 export default function FeedContent({ feeds, markAsRead, items }) {
-    // const [clicked, setClicked] = useState([])
-    //
-    // const handleSelected = (i) => {
-    //     // maybe in here setup localstorage to keep track of clicked items
-    //     setClicked([...clicked, clicked[i] = true])
-    //     markAsRead()
-    //     console.log(clicked)
-    // }
 
+    const handleSelected = (id, i) => {
+        let selected = items.filter(item => {
+            return item.id === id;
+        })
 
-    const handleSelected = (i) => {
-        // maybe in here setup localstorage to keep track of clicked items
-        if (items[i].items[i].read === false) {
-            items[i].items[i].read = true;
+        if (selected[0].items[i].read === false) {
+            selected[0].items[i].read = true;
             markAsRead()
         }
-        console.log(items[i].items[i].read)
-
-
+        console.log(selected[0].items)
     }
 
     return (
@@ -36,8 +28,7 @@ export default function FeedContent({ feeds, markAsRead, items }) {
                             <FeedContentList
                                 key={v4()}
                                 item={feed}
-                                onClick={() => handleSelected(i)}
-                                // isClicked={clicked[i]}
+                                onClick={() => handleSelected(feeds.id, i)}
                             />
 
                         )) : <li>Select a Feed</li>

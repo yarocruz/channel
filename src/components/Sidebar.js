@@ -73,7 +73,7 @@ export default function Sidebar() {
         setFeeds(feeds.filter(item => {
             if (item.id === id) {
 
-                return [...feeds, item['feedItems'] -= 1] // No sure if this is the best, but it's doing the count
+                return [...feeds, item['feedItems'] -= 1] // No sure if this is the best solution, but it's doing the count
             }
 
             console.log(item)
@@ -98,19 +98,6 @@ export default function Sidebar() {
              description: selected[0].feedDesc,
              items: selected[0].items
         });
-
-        // let parser = new Parser();
-        // parser.parseURL(`${CORS_PROXY}${selected[0].feedRSS}`, (err, feed) => {
-        //     if (err) throw err;
-        //     setFeedItems({
-        //         id: selected[0].id,
-        //         title: feed.title,
-        //         description: feed.description,
-        //         items: [ feed.items]
-        //     });
-        //     console.log(feedItems)
-        //
-        // }).catch(err => console.log(err));
     }
 
     return (
