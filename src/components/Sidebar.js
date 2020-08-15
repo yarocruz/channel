@@ -137,7 +137,11 @@ export default function Sidebar() {
                 </form>
             </div>
 
-            <FeedContent feeds={feedItems} markAsRead={() => markAsRead(feedItems.id)} />
+            <FeedContent
+                feeds={feedItems}
+                markAsRead={() => markAsRead(feedItems.id)}
+                items={feeds}
+            />
         </div>
     )
 }
