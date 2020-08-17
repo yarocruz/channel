@@ -16,6 +16,8 @@ import { v4 } from 'uuid';
     https://www.taniarascia.com/rss.xml
     https://cprss.s3.amazonaws.com/javascriptweekly.com.xml
     http://feeds.feedburner.com/scotthyoung/HAHx?format=xml
+
+    posts.sort((a, b) => a.date < b.date) ?
 */
 
 export default function Sidebar() {
@@ -34,34 +36,11 @@ export default function Sidebar() {
     );
 
     useEffect(() => {
-        let parser = new Parser();
-        parser.parseURL(`https://cors-anywhere.herokuapp.com/https://feeds.feedblitz.com/sethsblog`, (err, feed) => {
-            if (err) {
-                alert('Must enter a valid RSS feed'); // this solution is ratchet and I need to check if feed is already there.
-                throw err;
-            }
-            console.log(feed);
-
-            let feedData = {
-                id: v4(),
-                feedRSS: feedName,
-                feedTitle: feed.title,
-                feedDesc: feed.description,
-                feedUrl: feed.link,
-                feedItems: feed.items.length,
-                items: feed.items.map(obj => ({...obj, read: false})) // adding property to keep track of read items
-            }
-            localStorage.setItem('feeds', JSON.stringify([...feeds, feedData]));
-            setFeeds([...feeds, feedData ]);
-
-
-        }).catch(err => console.log(err));
-
-        const savedFeeds = JSON.parse(localStorage.getItem('feeds'));
+        let savedFeeds = JSON.parse(localStorage.getItem('feeds'));
         if (savedFeeds === null) return;
         setFeeds(savedFeeds)
 
-    }, [feedName])
+    }, [])
 
     const addFeed = (e) => {
         e.preventDefault();
