@@ -94,6 +94,21 @@
     color: slateblue;
 }
 
+.no-bullet {
+    list-style: none;
+    padding: 5px 0;
+    margin: 10px auto;
+}
+
+.content-links--item::before {
+    content: "\2022";
+    color: slateblue;
+    font-weight: bold;
+    display: inline-block;
+    width: 1em;
+    margin-left: -1em;
+}
+
 .content-links--item-date {
     font-size: small;
     font-weight: bold;

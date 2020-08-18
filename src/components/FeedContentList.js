@@ -5,7 +5,7 @@ export default function FeedContentList ({ item, onClick }) {
     let options = { weekday: 'short', year: 'numeric', month: 'short', day: 'numeric' };
     return (
         <>
-            <li onClick={onClick} className='content-links--item' >
+            <li onClick={onClick} className={!item.read ? 'content-links--item' : 'no-bullet'} >
                 <a href={item.link} target='_blank' rel='noopener noreferrer'>{item.title} <span className='content-links--item-date'>- {pubDates.toLocaleDateString('en-US', options)}</span> </a>
             </li>
         </>
