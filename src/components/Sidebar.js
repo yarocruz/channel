@@ -3,6 +3,7 @@ import Parser from "rss-parser";
 import FeedItem from "./FeedItem";
 import FeedContent from "./FeedContent";
 import { v4 } from 'uuid';
+import fetchDefaultFeed from '../utils/rssParser'
 
 /*
     feeds to test out
@@ -23,6 +24,7 @@ import { v4 } from 'uuid';
 export default function Sidebar() {
 
     const CORS_PROXY = `https://cors-anywhere.herokuapp.com/`;
+    let parser = new Parser();
 
     const [feeds, setFeeds] = useState([]);
     const [feedName, setFeedName ] = useState('');
@@ -35,17 +37,24 @@ export default function Sidebar() {
         }
     );
 
+    const addDefaultFeed = () => {
+        fetchDefaultFeed().then(response => {
+            localStorage.setItem('feeds', JSON.stringify([response]));
+            setFeeds([response])
+        })
+    }
+
     useEffect(() => {
         let savedFeeds = JSON.parse(localStorage.getItem('feeds'));
-        if (savedFeeds === null) return;
+        if (!savedFeeds.length) {
+            addDefaultFeed();
+            console.log('adding default...');
+        }
         setFeeds(savedFeeds)
-
     }, [])
 
     const addFeed = (e) => {
         e.preventDefault();
-
-        let parser = new Parser();
         parser.parseURL(`${CORS_PROXY}${feedName}`, (err, feed) => {
             if (err) {
                 alert('Must enter a valid RSS feed'); // this solution is ratchet and I need to check if feed is already there.
@@ -53,7 +62,7 @@ export default function Sidebar() {
             }
             console.log(feed);
 
-            let feedData = {
+            let newFeed = {
                 id: v4(),
                 feedRSS: feedName,
                 feedTitle: feed.title,
@@ -62,8 +71,8 @@ export default function Sidebar() {
                 feedItems: feed.items.length,
                 items: feed.items.map(obj => ({...obj, read: false})) // adding property to keep track of read items
             }
-            localStorage.setItem('feeds', JSON.stringify([...feeds, feedData]));
-            setFeeds([...feeds, feedData ]);
+            localStorage.setItem('feeds', JSON.stringify([...feeds, newFeed]));
+            setFeeds([...feeds, newFeed ]);
         }).catch(err => console.log(err));
         console.log(feeds);
 
