@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from "react";
-import Parser from "rss-parser";
 import FeedItem from "./FeedItem";
 import FeedContent from "./FeedContent";
 import { v4 } from 'uuid';
-import fetchDefaultFeed from '../utils/rssParser'
+import { fetchDefaultFeed, fetchNewFeed } from '../utils/rssParser'
 
 /*
     feeds to test out
@@ -22,9 +21,6 @@ import fetchDefaultFeed from '../utils/rssParser'
 */
 
 export default function Sidebar() {
-
-    const CORS_PROXY = `https://cors-anywhere.herokuapp.com/`;
-    let parser = new Parser();
 
     const [feeds, setFeeds] = useState([]);
     const [feedName, setFeedName ] = useState('');
@@ -55,26 +51,11 @@ export default function Sidebar() {
 
     const addFeed = (e) => {
         e.preventDefault();
-        parser.parseURL(`${CORS_PROXY}${feedName}`, (err, feed) => {
-            if (err) {
-                alert('Must enter a valid RSS feed'); // this solution is ratchet and I need to check if feed is already there.
-                throw err;
-            }
-            console.log(feed);
 
-            let newFeed = {
-                id: v4(),
-                feedRSS: feedName,
-                feedTitle: feed.title,
-                feedDesc: feed.description,
-                feedUrl: feed.link,
-                feedItems: feed.items.length,
-                items: feed.items.map(obj => ({...obj, read: false})) // adding property to keep track of read items
-            }
-            localStorage.setItem('feeds', JSON.stringify([...feeds, newFeed]));
-            setFeeds([...feeds, newFeed ]);
-        }).catch(err => console.log(err));
-        console.log(feeds);
+        fetchNewFeed(feedName).then(response => {
+            localStorage.setItem('feeds', JSON.stringify([...feeds, response]));
+            setFeeds([...feeds, response ]);
+        }).catch(err => alert(err));
 
         setFeedName('');
     }
