@@ -11,9 +11,10 @@ export default function FeedContent({ feeds, markAsRead, items }) {
 
         if (selected[0].items[i].read === false) {
             selected[0].items[i].read = true;
+            feeds.items[i].read = true;
             markAsRead()
         }
-        console.log(selected[0].items)
+        console.log(selected[0].items[i])
     }
 
     return (

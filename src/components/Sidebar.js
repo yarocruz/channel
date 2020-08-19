@@ -83,12 +83,15 @@ export default function Sidebar() {
     const renderSelectFeed = (id) => {
         let selected = feeds.filter(feed => feed.id === id);
         console.log(selected)
-        setFeedItems({
-             id: selected[0].id,
-             title: selected[0].feedTitle,
-             description: selected[0].feedDesc,
-             items: selected[0].items
-        });
+        fetchNewFeed(selected[0].feedRSS).then(response => {
+
+            setFeedItems({
+                id: selected[0].id,
+                title: response.feedTitle,
+                description: response.feedDesc,
+                items: response.items
+            });
+        }).catch(err => alert(err));
     }
 
     return (
