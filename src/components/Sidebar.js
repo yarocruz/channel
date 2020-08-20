@@ -84,12 +84,20 @@ export default function Sidebar() {
         let selected = feeds.filter(feed => feed.id === id);
         console.log(selected)
         fetchNewFeed(selected[0].feedRSS).then(response => {
-
+            let titles = selected[0].items.map(obj => obj['title'])
+            console.log(titles);
+            response.items.forEach((obj, i) => {
+                if (titles.indexOf(obj['title']) === -1) {
+                    selected[0].items.unshift(obj)
+                }
+                // setFeeds([{...feeds, feedItems: titles.length} ]) Need to figure out how to update the length of times, basically the count number needs to be updated.
+            });
+            //console.log(newFeeds)
             setFeedItems({
                 id: selected[0].id,
                 title: response.feedTitle,
                 description: response.feedDesc,
-                items: response.items
+                items: selected[0].items.map(obj => obj)
             });
         }).catch(err => alert(err));
     }
