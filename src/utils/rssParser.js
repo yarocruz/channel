@@ -5,10 +5,10 @@ const CORS_PROXY = `https://cors-anywhere.herokuapp.com/`;
 let parser = new Parser();
 
 export const fetchDefaultFeed = async () => {
-    let defaultFeed = await parser.parseURL(`${CORS_PROXY}https://news.ycombinator.com/rss`);
+    let defaultFeed = await parser.parseURL(`${CORS_PROXY}https://feeds.feedblitz.com/sethsblog`);
     return {
         id: v4(),
-        feedRSS: 'https://news.ycombinator.com/rss',
+        feedRSS: 'https://feeds.feedblitz.com/sethsblog',
         feedTitle: defaultFeed.title,
         feedDesc: defaultFeed.description,
         feedUrl: defaultFeed.link,

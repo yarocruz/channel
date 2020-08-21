@@ -2,7 +2,8 @@ import React, { useState, useEffect } from "react";
 import FeedItem from "./FeedItem";
 import FeedContent from "./FeedContent";
 import { v4 } from 'uuid';
-import { fetchDefaultFeed, fetchNewFeed } from '../utils/rssParser'
+import { fetchNewFeed } from '../utils/rssParser';
+// import { useBeforeFirstRender } from '../utils/useBeforeFirstRender';
 
 /*
     feeds to test out
@@ -20,6 +21,8 @@ import { fetchDefaultFeed, fetchNewFeed } from '../utils/rssParser'
     posts.sort((a, b) => a.date < b.date) ?
 */
 
+
+
 export default function Sidebar() {
 
     const [feeds, setFeeds] = useState([]);
@@ -33,19 +36,23 @@ export default function Sidebar() {
         }
     );
 
-    const addDefaultFeed = () => {
-        fetchDefaultFeed().then(response => {
-            localStorage.setItem('feeds', JSON.stringify([response]));
-            setFeeds([response])
-        })
-    }
+   //  const addDefaultFeed = () => {
+   //      fetchDefaultFeed().then(response => {
+   //          if (feeds.length <= 0) {
+   //              localStorage.setItem('feeds', JSON.stringify([response]));
+   //              setFeeds([response])
+   //          }
+   //      })
+   //  }
+   //
+   // useBeforeFirstRender(() => {
+   //     if(feeds.length <= 0) {
+   //         addDefaultFeed()
+   //     }
+   // })
 
     useEffect(() => {
         let savedFeeds = JSON.parse(localStorage.getItem('feeds'));
-        if (!savedFeeds.length) {
-            addDefaultFeed();
-            console.log('adding default...');
-        }
         setFeeds(savedFeeds)
     }, [])
 
