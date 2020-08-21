@@ -104,7 +104,7 @@ export default function Sidebar() {
                     setFeeds(feeds.filter(item => {
                         if (item.id === id) {
                             console.log(item.feedItems)
-                            return [...feeds, item['feedItems'] += newItemCount] // No sure if this is the best solution, but it's doing the count
+                            return [...selected[0].items, item['feedItems'] += newItemCount] // No sure if this is the best solution, but it's doing the count
                         }
                         return feedItems;
                     }))
