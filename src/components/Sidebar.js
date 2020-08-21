@@ -96,13 +96,15 @@ export default function Sidebar() {
             let titles = selected[0].items.map(obj => obj['title'])
             console.log(titles);
             response.items.forEach((obj, i) => {
+                let newItemCount = 0
                 if (titles.indexOf(obj['title']) === -1) {
+                    newItemCount++
                     selected[0].items.unshift(obj)
 
                     setFeeds(feeds.filter(item => {
                         if (item.id === id) {
                             console.log(item.feedItems)
-                            return [...feeds, item['feedItems'] = selected[0].items.length] // No sure if this is the best solution, but it's doing the count
+                            return [...feeds, item['feedItems'] += newItemCount] // No sure if this is the best solution, but it's doing the count
                         }
                         return feedItems;
                     }))
