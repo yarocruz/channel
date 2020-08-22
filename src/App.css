@@ -3,23 +3,39 @@
     align-items: center;
     padding: 10px 40px;
     justify-content: space-between;
-    color: #49698E;
+    background: rgb(73,105,142);
+    background: linear-gradient(180deg, rgba(73,105,142,1) 0%, rgba(87,123,164,1) 100%);
     border-bottom: 1px solid #dbdbdb;
 }
 
-.navbar .logo {
-    text-transform: uppercase;
-    font-size: medium;
+.logo  {
+    display: flex;
+    align-items: center;
+    font-size: 8px;
+}
+
+.logo img {
+    max-width: 20px;
+    padding-right: 10px;
+}
+
+.logo a {
+    color: #fff;
+}
+
+.rss-icon {
+
 }
 
 .navbar nav a {
     text-decoration: none;
-    color: #aaa;
+    color: #fff;
     padding-left: 15px;
 }
 
-.navbar nav a:hover {
-    color: #49698E;
+.navbar nav a:hover,
+.logo a:hover {
+    color: #ccc;
 }
 
 .main-container {
@@ -30,7 +46,6 @@
 .sidebar {
     width: 350px;
     height: 100vh;
-    background-color: #F2F8FD;
     border-right: 1px solid #dbdbdb;
     display: flex;
     flex-direction: column;
@@ -85,24 +100,33 @@
     color: red;
 }
 
+.content-links {
+    margin-top: 20px;
+    margin-left: 15px;
+}
+
+.content-links--info h1 {
+    color: #49698e;
+}
+
 .content-links--item {
-    padding: 5px 0;
-    margin: 10px auto;
+    padding: 10px 0;
+    border-top: 1px solid #dbdbdb;;
 }
 
 .content-links--item a:hover {
-    color: slateblue;
+    color: #5758a4;
 }
 
 .no-bullet {
     list-style: none;
-    padding: 5px 0;
-    margin: 10px auto;
+    padding: 10px 0;
+    border-top: 1px solid #dbdbdb;
 }
 
 .content-links--item::before {
     content: "\2022";
-    color: slateblue;
+    color: #5758a4;
     font-weight: bold;
     display: inline-block;
     width: 1em;
