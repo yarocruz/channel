@@ -26,6 +26,6 @@ export const fetchNewFeed = async (feedName) => {
         feedDesc: newFeed.description,
         feedUrl: newFeed.link,
         feedItems: newFeed.items.length,
-        items: newFeed.items.map(obj => ({...obj, read: false})) // adding property to keep track of read items
+        items: newFeed.items.map(obj => ({...obj, read: false}))
     };
 }

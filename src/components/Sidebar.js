@@ -3,7 +3,6 @@ import FeedItem from "./FeedItem";
 import FeedContent from "./FeedContent";
 import { v4 } from 'uuid';
 import { fetchNewFeed, fetchDefaultFeed } from '../utils/rssParser';
-//import { useBeforeFirstRender } from '../utils/useBeforeFirstRender';
 
 /*
     feeds to test out
@@ -21,12 +20,11 @@ import { fetchNewFeed, fetchDefaultFeed } from '../utils/rssParser';
     posts.sort((a, b) => a.date < b.date) ?
 */
 
-
-
 export default function Sidebar() {
 
     const [feeds, setFeeds] = useState([]);
     const [feedName, setFeedName ] = useState('');
+    const [isLoading, setIsLoading] = useState(false)
     const [feedItems, setFeedItems] = useState(
         {
             id: '',
@@ -42,10 +40,6 @@ export default function Sidebar() {
             setFeeds([response])
         })
     }
-
-   // useBeforeFirstRender(() => {
-   //     addDefaultFeed()
-   // })
 
     useEffect(() => {
         let savedFeeds;
@@ -75,8 +69,6 @@ export default function Sidebar() {
 
                 return [...feeds, item['feedItems'] -= 1] // No sure if this is the best solution, but it's doing the count
             }
-
-            console.log(item)
             return feedItems;
         }))
         localStorage.setItem('feeds', JSON.stringify([...feeds]));
@@ -84,18 +76,17 @@ export default function Sidebar() {
 
     const deleteFeed = (id) => {
         let rest = feeds.filter(item => item.id !== id);
-        console.log(rest);
         setFeeds([...rest])
         localStorage.setItem('feeds', JSON.stringify([...rest]));
     }
 
     const renderSelectFeed = (id) => {
+        setIsLoading(true);
         let selected = feeds.filter(feed => feed.id === id);
-        console.log(selected)
         fetchNewFeed(selected[0].feedRSS).then(response => {
+
             let titles = selected[0].items.map(obj => obj['title'])
-            console.log(titles);
-            response.items.forEach((obj, i) => {
+            response.items.forEach((obj) => {
                 let newItemCount = 0
                 if (titles.indexOf(obj['title']) === -1) {
                     newItemCount++
@@ -103,15 +94,13 @@ export default function Sidebar() {
 
                     setFeeds(feeds.filter(item => {
                         if (item.id === id) {
-                            console.log(item.feedItems)
                             return [...selected[0].items, item['feedItems'] += newItemCount] // No sure if this is the best solution, but it's doing the count
                         }
                         return feedItems;
                     }))
                 }
-                console.log(selected[0].items.length)
+                setIsLoading(false);
             });
-            //console.log(newFeeds)
             setFeedItems({
                 id: selected[0].id,
                 title: response.feedTitle,
@@ -119,9 +108,12 @@ export default function Sidebar() {
                 items: selected[0].items
             });
 
+
+
         }).catch(err => alert(err));
 
         localStorage.setItem('feeds', JSON.stringify([...feeds]));
+
     }
 
     return (
@@ -138,7 +130,7 @@ export default function Sidebar() {
                                 onDelete={() => deleteFeed(feed.id)}
                             />
                         )) :
-                        <li>No feeds yet.</li>
+                        <li>Add an RSS Feed</li>
                     }
                 </ul>
 
@@ -152,6 +144,7 @@ export default function Sidebar() {
                 feeds={feedItems}
                 markAsRead={() => markAsRead(feedItems.id)}
                 items={feeds}
+                loading={isLoading}
             />
         </div>
     )
