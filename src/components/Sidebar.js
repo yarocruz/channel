@@ -3,6 +3,7 @@ import FeedItem from "./FeedItem";
 import FeedContent from "./FeedContent";
 import { v4 } from 'uuid';
 import { fetchNewFeed, fetchDefaultFeed } from '../utils/rssParser';
+import SidebarDrawer from "./Drawer";
 
 /*
     feeds to test out
@@ -118,6 +119,7 @@ export default function Sidebar() {
 
     return (
         <div className='main-container'>
+            <SidebarDrawer />
             <div className="sidebar">
                 <ul className="sidebar--feed-list">
                     {feeds.length ?
