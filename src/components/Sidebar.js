@@ -119,28 +119,30 @@ export default function Sidebar() {
 
     return (
         <div className='main-container'>
-            <SidebarDrawer />
-            <div className="sidebar">
-                <ul className="sidebar--feed-list">
-                    {feeds.length ?
-                        feeds.map(feed => (
-                            <FeedItem
-                                title={feed.feedTitle}
-                                feedCount={feed.feedItems}
-                                key={v4()}
-                                onClick={() => renderSelectFeed(feed.id)}
-                                onDelete={() => deleteFeed(feed.id)}
-                            />
-                        )) :
-                        <li>Add an RSS Feed</li>
-                    }
-                </ul>
+            <SidebarDrawer>
+                <div className="sidebar">
+                    <ul className="sidebar--feed-list">
+                        {feeds.length ?
+                            feeds.map(feed => (
+                                <FeedItem
+                                    title={feed.feedTitle}
+                                    feedCount={feed.feedItems}
+                                    key={v4()}
+                                    onClick={() => renderSelectFeed(feed.id)}
+                                    onDelete={() => deleteFeed(feed.id)}
+                                />
+                            )) :
+                            <li>Add an RSS Feed</li>
+                        }
+                    </ul>
 
-                <form className="sidebar-form" onSubmit={addFeed} >
-                    <input type="text" value={feedName} onChange={e => setFeedName(e.target.value)}/>
-                    <button>Add a Feed</button>
-                </form>
-            </div>
+                    <form className="sidebar-form" onSubmit={addFeed} >
+                        <input type="text" value={feedName} onChange={e => setFeedName(e.target.value)}/>
+                        <button>Add a Feed</button>
+                    </form>
+                </div>
+            </SidebarDrawer>
+
 
             <FeedContent
                 feeds={feedItems}

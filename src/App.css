@@ -23,10 +23,6 @@
     color: #fff;
 }
 
-.rss-icon {
-
-}
-
 .navbar nav a {
     text-decoration: none;
     color: #fff;
@@ -49,6 +45,10 @@
     border-right: 1px solid #dbdbdb;
     display: flex;
     flex-direction: column;
+}
+
+.drawer {
+
 }
 
 .guide-container {
@@ -167,4 +167,13 @@ a {
 
 .sidebar-form input{
     margin-bottom: 10px;
+}
+
+@media screen and (max-width: 400px){
+    .sidebar {
+        display: none;
+    }
+    .drawer {
+        display: inline;
+    }
 }

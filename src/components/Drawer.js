@@ -12,7 +12,7 @@ import {
     useDisclosure
 } from "@chakra-ui/core";
 
-export default function SidebarDrawer() {
+export default function SidebarDrawer( { children }) {
     const { isOpen, onOpen, onClose } = useDisclosure();
     const btnRef = React.useRef();
 
@@ -34,6 +34,9 @@ export default function SidebarDrawer() {
 
                     <DrawerBody>
                         <Input placeholder="Type here..." />
+
+                        {children}
+
                     </DrawerBody>
 
                     <DrawerFooter>
