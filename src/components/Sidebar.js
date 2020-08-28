@@ -3,6 +3,7 @@ import FeedItem from "./FeedItem";
 import FeedContent from "./FeedContent";
 import { v4 } from 'uuid';
 import { fetchNewFeed, fetchDefaultFeed } from '../utils/rssParser';
+import SidebarDrawer from "./Drawer";
 
 /*
     feeds to test out
@@ -55,7 +56,7 @@ export default function Sidebar() {
     const addFeed = (e) => {
         e.preventDefault();
 
-        fetchNewFeed(feedName).then(response => {
+        fetchNewFeed(feedName.trim()).then(response => {
             localStorage.setItem('feeds', JSON.stringify([...feeds, response]));
             setFeeds([...feeds, response ]);
         }).catch(err => alert(err));
@@ -118,27 +119,52 @@ export default function Sidebar() {
 
     return (
         <div className='main-container'>
-            <div className="sidebar">
-                <ul className="sidebar--feed-list">
-                    {feeds.length ?
-                        feeds.map(feed => (
-                            <FeedItem
-                                title={feed.feedTitle}
-                                feedCount={feed.feedItems}
-                                key={v4()}
-                                onClick={() => renderSelectFeed(feed.id)}
-                                onDelete={() => deleteFeed(feed.id)}
-                            />
-                        )) :
-                        <li>Add an RSS Feed</li>
-                    }
-                </ul>
+                <div className="sidebar">
+                    <ul className="sidebar--feed-list">
+                        {feeds.length ?
+                            feeds.map(feed => (
+                                <FeedItem
+                                    title={feed.feedTitle}
+                                    feedCount={feed.feedItems}
+                                    key={v4()}
+                                    onClick={() => renderSelectFeed(feed.id)}
+                                    onDelete={() => deleteFeed(feed.id)}
+                                />
+                            )) :
+                            <li>Add an RSS Feed</li>
+                        }
+                    </ul>
 
-                <form className="sidebar-form" onSubmit={addFeed} >
-                    <input type="text" value={feedName} onChange={e => setFeedName(e.target.value)}/>
-                    <button>Add a Feed</button>
-                </form>
-            </div>
+                    <form className="sidebar-form" onSubmit={addFeed} >
+                        <input type="text" value={feedName} onChange={e => setFeedName(e.target.value)}/>
+                        <button>Add a Feed</button>
+                    </form>
+                </div>
+
+                <SidebarDrawer>
+                    <div className="drawer">
+                        <ul className="sidebar--feed-list">
+                            {feeds.length ?
+                                feeds.map(feed => (
+                                    <FeedItem
+                                        title={feed.feedTitle}
+                                        feedCount={feed.feedItems}
+                                        key={v4()}
+                                        onClick={() => renderSelectFeed(feed.id)}
+                                        onDelete={() => deleteFeed(feed.id)}
+                                    />
+                                )) :
+                                <li>Add an RSS Feed</li>
+                            }
+                        </ul>
+
+                        <form className="sidebar-form" onSubmit={addFeed} >
+                            <input type="text" value={feedName} onChange={e => setFeedName(e.target.value)}/>
+                            <button>Add a Feed</button>
+                        </form>
+                    </div>
+                </SidebarDrawer>
+
 
             <FeedContent
                 feeds={feedItems}

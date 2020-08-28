@@ -1,5 +1,8 @@
 # Channel
 
+![Channel Demo Screenshot](channel-screenshot.png)
+
+
 Channel is an RSS Reader Web App built with React. The project is currently in stage 0.8.9, but my aim is to make an RSS reader that has similar features like [Feedly](https://feedly.com/), Google Reader(RIP), and other popular RSS readers.
 
 ## What is RSS Even?
