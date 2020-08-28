@@ -29,6 +29,7 @@ export default function SidebarDrawer( { children }) {
                         {children}
 
                     </DrawerBody>
+
                 </DrawerContent>
             </Drawer>
         </div>
