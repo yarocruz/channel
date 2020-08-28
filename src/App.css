@@ -51,6 +51,14 @@
     display: none;
 }
 
+.drawer--icon {
+    position: fixed;
+    top: 90px;
+    left: 15px;
+    color: #49698E;
+    opacity: 0.3;
+}
+
 .guide-container {
     margin: 10px 40px;
 }

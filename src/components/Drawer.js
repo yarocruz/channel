@@ -13,7 +13,7 @@ export default function SidebarDrawer( { children }) {
 
     return (
         <div className='drawer'>
-            <Icon name="arrow-right" ref={btnRef} variantColor="teal" onClick={onOpen}>
+            <Icon className='drawer--icon' name="arrow-right" ref={btnRef} variantColor="teal" onClick={onOpen}>
                 Open
             </Icon>
             <Drawer
